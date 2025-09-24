@@ -22,9 +22,16 @@ wav2mel ./audio.wav --out ./output --sr 44100 --n-mels 64 --win-seconds 1.0 --st
 
 ## Installation
 
-### Local Development Installation
+### Quick Setup
 
 ```bash
+# Clone the repository
+git clone https://github.com/SkySentryProject/SkySentry-Tools.git
+cd SkySentry-Tools
+
+# Create virtual environment and install
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -e .
 ```
 
@@ -47,6 +54,45 @@ The `soundfile` package should handle Windows dependencies automatically.
 
 - Python 3.9 or higher required
 - Tested on Python 3.9, 3.10, 3.11, 3.12
+
+### Verify Installation
+
+```bash
+# Test the installation
+wav2mel --help
+
+# Run tests
+pip install pytest
+pytest tools/ -v
+```
+
+### Troubleshooting Installation
+
+**"pip: command not found"**
+```bash
+# Use python3 -m pip instead
+python3 -m pip install -e .
+```
+
+**"No module named 'soundfile'" or libsndfile errors:**
+```bash
+# macOS
+brew install libsndfile
+
+# Ubuntu/Debian
+sudo apt-get install libsndfile1
+
+# Windows - install Visual C++ Redistributable
+```
+
+**Virtual environment issues:**
+```bash
+# Create fresh environment
+rm -rf venv
+python3 -m venv venv
+source venv/bin/activate
+pip install -e .
+```
 
 ## Project Structure
 
@@ -89,17 +135,40 @@ audioprocess = "tools.audioprocess.cli:main"
 
 ## Testing
 
-Run tests for all tools:
+### Setup Testing Environment
 
 ```bash
-# Install in development mode
-pip install -e .
+# Activate virtual environment
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
+# Install pytest if not already installed
+pip install pytest
+```
+
+### Run Tests
+
+```bash
 # Run all tests
 pytest tools/ -v
 
 # Run tests for specific tool
 pytest tools/wav2mel/tests/ -v
+
+# Run with coverage (optional)
+pip install pytest-cov
+pytest tools/ --cov=tools --cov-report=html
+```
+
+### Expected Test Output
+
+```
+============================= test session starts ==============================
+platform darwin -- Python 3.13.7, pytest-8.4.2, pluggy-2.0.0
+collected 1 item
+
+tools/wav2mel/tests/test_smoke.py::test_segment_shapes PASSED    [100%]
+
+============================== 1 passed in 3.98s ==============================
 ```
 
 ## Contributing
