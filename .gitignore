@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.dist/
+build/
+dist/
+.env
+.venv
+.env*/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Outputs
+/out/
+*_mel_chunks.npy
+*_chunk*.npy
+*_mel_full.npy
+*_mel.png
+*_segment_*.png
+index.csv
+test_*/

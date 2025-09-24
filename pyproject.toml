@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skysentry-tools"
+version = "0.1.0"
+description = "SkySentry Tools - A collection of audio and signal processing utilities"
+authors = [{ name = "SkySentry Project"}]
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+dependencies = [
+  "numpy>=1.23",
+  "scipy>=1.10",
+  "soundfile>=0.12",
+  "librosa>=0.10",
+  "matplotlib>=3.7",
+  "tqdm>=4.65",
+]
+
+[project.urls]
+Homepage = "https://github.com/SkySentryProject/SkySentry-Tools"
+Repository = "https://github.com/SkySentryProject/SkySentry-Tools"
+Issues = "https://github.com/SkySentryProject/SkySentry-Tools/issues"
+
+[project.scripts]
+wav2mel = "tools.wav2mel.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tools*"]
