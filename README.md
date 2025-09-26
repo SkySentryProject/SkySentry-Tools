@@ -20,6 +20,19 @@ wav2mel ./audio.wav --out ./output --sr 44100 --n-mels 64 --win-seconds 1.0 --st
 
 [📖 **Full wav2mel Documentation**](tools/wav2mel/README.md)
 
+### wavResample
+A professional WAV resampling tool that intelligently converts audio files to a target sample rate (default: 44.1kHz) with automatic sample rate detection and batch processing capabilities.
+
+**Quick Start:**
+```bash
+pip install -e .
+wavResample ./audio.wav --output ./resampled
+wavResample ./audio_folder --output ./resampled --downsample
+wavResample ./audio.wav --output ./resampled --target-sample-rate 48000 --target-sample-rate-k 48
+```
+
+[📖 **Full wavResample Documentation**](tools/wavResample/README.md)
+
 ## Installation
 
 ### Quick Setup
@@ -60,6 +73,7 @@ The `soundfile` package should handle Windows dependencies automatically.
 ```bash
 # Test the installation
 wav2mel --help
+wavResample --help
 
 # Run tests
 pip install pytest
@@ -100,6 +114,7 @@ pip install -e .
 SkySentry-Tools/
 ├── tools/                  # Individual tools
 │   ├── wav2mel/           # WAV to mel-spectrogram conversion
+│   ├── wavResample/       # WAV resampling to target sample rate
 │   └── [future-tools]/    # Additional tools will be added here
 ├── samples/               # Sample files for testing
 ├── pyproject.toml         # Package configuration
@@ -130,6 +145,7 @@ Then update `pyproject.toml`:
 ```toml
 [project.scripts]
 wav2mel = "tools.wav2mel.cli:main"
+wavResample = "tools.wavResample.cli:main"
 audioprocess = "tools.audioprocess.cli:main"
 ```
 
@@ -153,6 +169,7 @@ pytest tools/ -v
 
 # Run tests for specific tool
 pytest tools/wav2mel/tests/ -v
+pytest tools/wavResample/tests/ -v
 
 # Run with coverage (optional)
 pip install pytest-cov
@@ -164,11 +181,12 @@ pytest tools/ --cov=tools --cov-report=html
 ```
 ============================= test session starts ==============================
 platform darwin -- Python 3.13.7, pytest-8.4.2, pluggy-2.0.0
-collected 1 item
+collected 2 items
 
 tools/wav2mel/tests/test_smoke.py::test_segment_shapes PASSED    [100%]
+tools/wavResample/tests/test_resampler.py::test_smoke PASSED     [100%]
 
-============================== 1 passed in 3.98s ==============================
+============================== 2 passed in 4.12s ==============================
 ```
 
 ## Contributing

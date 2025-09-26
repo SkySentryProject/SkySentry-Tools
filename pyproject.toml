@@ -26,6 +26,7 @@ Issues = "https://github.com/SkySentryProject/SkySentry-Tools/issues"
 
 [project.scripts]
 wav2mel = "tools.wav2mel.cli:main"
+wavResample = "tools.wavResample.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["tools*"]
